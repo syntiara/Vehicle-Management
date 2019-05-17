@@ -1,0 +1,31 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <div class="container pl-0">
+    <a class="navbar-brand fa fa-car text-white" href="#"> VEEGA VEHICLE PORTAL</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <div class="nav navbar-nav navbar-right">
+        <div class="nav-divider"></div>
+        <div class="navbar-text text-white"><i class="fa fa-h-square"></i>Home</div>
+        <div class="nav-divider"></div>
+        <div class="nav-item"><a class="nav-link" [routerLink]="['/counter']" [routerLinkActive]="['link-active']"><i class="fa fa-link"></i>Counter</a></div>
+        <div class="nav-divider"></div>
+        <div class="nav-item disabled"><a class="nav-link" [routerLink]="['/fetch-data']" [routerLinkActive]="['link-active']">Fetch Data</a></div>
+        <div class="nav-divider"></div>
+        <div class="nav-item text-white dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Vehicles
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" [routerLink]="['/vehicles/new']" [routerLinkActive]="['link-active']"><i class="fa fa-plus"></i>New Vehicle</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+        <div class="nav-divider"></div>
+      </div>
+    </div>
+  </div>
+</nav>
