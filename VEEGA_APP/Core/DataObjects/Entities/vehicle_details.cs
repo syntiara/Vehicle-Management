@@ -12,6 +12,7 @@ namespace VEEGA_APP.Core.DataObjects.Entities
         public vehicle_details()
         {
             vehicle_feature_join = new List<vehicle_feature_join>();
+            photos = new List<vehicle_photo>();
         }
         [Key]
         public int id { get; set; }
@@ -26,6 +27,8 @@ namespace VEEGA_APP.Core.DataObjects.Entities
         public virtual vehicle_model vehicle_model { get; set; }
 
         public IList<vehicle_feature_join> vehicle_feature_join { get; set; }
+
+        public IList<vehicle_photo> photos { get; set; }
     }
 
     public class contact

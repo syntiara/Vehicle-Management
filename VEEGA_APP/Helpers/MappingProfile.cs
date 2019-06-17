@@ -13,6 +13,8 @@ namespace VEEGA_APP.Helpers
             CreateMap<vehicle_feature, VehicleBaseDTO>().ReverseMap();
             CreateMap<vehicle_feature, VehicleBaseDTO>().ReverseMap();
             CreateMap<vehicle_feature, VehicleBaseDTO>().ReverseMap();
+            //mapping generics
+            //CreateMap(typeof(QueryResult<>), typeof(QueryResultDTO<>));
 
 
             CreateMap<vehicle_make, VehicleMakeDTO>()
@@ -28,6 +30,7 @@ namespace VEEGA_APP.Helpers
 
 
 
+            // mapping collectiona
             CreateMap<VehicleDetailsWDTO, vehicle_details>()
              //Ignore mapping primary key
              .ForMember(dest => dest.id, opt => opt.Ignore())

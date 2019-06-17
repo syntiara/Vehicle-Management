@@ -12,6 +12,25 @@ html, body{height: 100vh}
   overflow: hidden;
 }
 
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+  background-color: #592B81 !important;
+  border-color: #592B81 !important;
+}
+
+.btn-primary:hover {
+  background-color: #592B81 !important;
+  border-color: #592B81 !important;
+}
+
+.btn-primary {
+  background-color: #592B81 !important;
+  border-color: #592B81 !important;
+}
+
+.text-primary{
+  color: #592B81 !important;
+}
+
 .alert-danger{
   border-color: red !important;
   background-color: red !important;

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using VEEGA_APP.Core.DataObjects.Models;
 using VEEGA_APP.Core.Interfaces;
 
@@ -26,56 +25,57 @@ namespace VEEGA_APP.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateVehicleDetails([FromBody]VehicleDetailsWDTO model)
         {
-                try
+            try
+            {
+                if (!ModelState.IsValid)
                 {
-                    if (!ModelState.IsValid)
-                    {
-                        return BadRequest(ModelState);
-                    }
-                    if (!await _vehicleModelRepo.EntityExists(model.modelId))
-                    {
-                        ModelState.AddModelError("ModelId", "Invalid model id");
-                        return BadRequest(ModelState);
-                    }
-                    var entity = _vehicleDetailsRepo.CreateVehicleDetail(model);
-                    _vehicleDetailsRepo.Add(entity);
-                    if (await _uow.completeAsync())
-                        return Ok(model);
+                    return BadRequest(ModelState);
+                }
+                if (!await _vehicleModelRepo.EntityExists(model.modelId))
+                {
+                    ModelState.AddModelError("ModelId", "Invalid model id");
+                    return BadRequest(ModelState);
+                }
+                var entity = _vehicleDetailsRepo.CreateVehicleDetail(model);
+                _vehicleDetailsRepo.Add(entity);
+                if (await _uow.completeAsync())
+                    return Ok(model);
 
-                    return StatusCode(500);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                    return StatusCode(500);
-                }
+                return StatusCode(500);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500);
+            }
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateVehicleDetails(int id, [FromBody]VehicleDetailsWDTO model)
         {
-                try
-                {
-                    if (!ModelState.IsValid)
-                    {
-                        return BadRequest(ModelState);
-                    }
-                    var vehicleEntity = await _vehicleDetailsRepo.FindVehicleEntity(id);
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
-                    if (vehicleEntity != null)
-                    {
-                        var entity = _vehicleDetailsRepo.UpdateVehicleDetail(model, vehicleEntity);
-                        if (await _uow.completeAsync())
-                            return Ok(model);
-                    }
+                var vehicleEntity = await _vehicleDetailsRepo.FindVehicleEntity(id);
 
+                if (vehicleEntity == null)
                     return NotFound(id);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                    return StatusCode(500);
-                }
+
+                var entity = _vehicleDetailsRepo.UpdateVehicleDetail(model, vehicleEntity);
+                _vehicleDetailsRepo.Update(entity);
+                if (await _uow.completeAsync())
+                    return Ok(model);
+
+                return StatusCode(500, model);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500);
+            }
         }
 
         [HttpDelete("{id}")]
@@ -110,10 +110,31 @@ namespace VEEGA_APP.Controllers
 
                 if (vehicleDetails != null)
                 {
-                        return Ok(vehicleDetails);
+                    return Ok(vehicleDetails);
                 }
 
                 return NotFound(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500);
+            }
+        }
+
+        [HttpGet()]
+        public async Task<IActionResult> GetVehicleDetailsList([FromQuery] VehicleQuery queryObj)
+        {
+            try
+            {
+                var vehicleDetails = await _vehicleDetailsRepo.GetVehicleDetailsList(queryObj);
+
+                if (vehicleDetails != null)
+                {
+                    return Ok(vehicleDetails);
+                }
+
+                return NotFound(vehicleDetails);
             }
             catch (Exception ex)
             {

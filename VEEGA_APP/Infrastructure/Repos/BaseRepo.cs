@@ -63,7 +63,7 @@ namespace VEEGA_APP.Infrastructure.Repos
 
         public void Update(TEntity entity)
         {
-            _DBContext.Entry(entity).State = EntityState.Modified;
+            _DBContext.Set<TEntity>().Update(entity);
         }
     }
 }

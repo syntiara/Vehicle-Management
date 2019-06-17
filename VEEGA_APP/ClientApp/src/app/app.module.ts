@@ -11,6 +11,9 @@ import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './shared/component/nav-menu/nav-menu.component';
 import { VehicleService } from './service/vehicle.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
+import { PaginationComponent } from './shared/component/pagination/pagination.component';
+import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CounterComponent,
     FetchDataComponent,
     HomeComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    VehicleListComponent,
+    PaginationComponent,
+    ViewVehicleComponent
   ],
   imports: [
     BrowserModule,
