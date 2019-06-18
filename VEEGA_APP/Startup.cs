@@ -32,6 +32,10 @@ namespace VEEGA_APP
         {
             services.AddMvc();
             services.AddAutoMapper();
+
+            // Inject AppIdentitySettings so that others can use too
+            services.Configure<PhotoSettings>(configuration.GetSection("PhotoSettings"));
+
             services.Configure<AppSettings>(configuration.GetSection("ApplicationSettings"));
             var connectionString = configuration.GetConnectionString("VeegaCoreEF");
             services.AddDbContext<VeegaContext>(o => o.UseSqlServer(connectionString));
