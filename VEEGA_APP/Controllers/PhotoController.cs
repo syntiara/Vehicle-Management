@@ -1,18 +1,19 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 using VEEGA_APP.Core.DataObjects.Entities;
+using VEEGA_APP.Core.DataObjects.Models;
 using VEEGA_APP.Core.Interfaces;
 using VEEGA_APP.Helpers;
 
 namespace VEEGA_APP.Controllers
 {
-    [Route("api/vehicles/{vehicleId}/photos")]
+    [Route("api/vehicle-details/{vehicleId}/photos")]
     [ApiController]
     public class PhotoController : ControllerBase
     {
@@ -21,19 +22,24 @@ namespace VEEGA_APP.Controllers
         private readonly PhotoSettings photoSettings;
 
         private IVehicleDetailsRepository _vehicleDetailsRepo;
+        private IVehiclePhotoRepository _vehiclePhotoRepo;
         private IUnitOfWork _uow;
         private IHostingEnvironment _host;
+        private IMapper _mapper;
 
-        public PhotoController(IHostingEnvironment host, IVehicleDetailsRepository vehicleDetailsRepo, IUnitOfWork uow, IOptionsSnapshot<PhotoSettings> options)
+        public PhotoController(IHostingEnvironment host, IVehicleDetailsRepository vehicleDetailsRepo, IUnitOfWork uow, IOptionsSnapshot<PhotoSettings> options, IMapper mapper, IVehiclePhotoRepository vehiclePhotoRepo)
         {
             _host = host;
             _vehicleDetailsRepo = vehicleDetailsRepo;
+            _vehiclePhotoRepo = vehiclePhotoRepo;
             _uow = uow;
             photoSettings = options.Value;
+            _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload(int vehicleId, IFormFile file)
+        //[FromForm] is used to accept files
+        public async Task<IActionResult> Upload(int vehicleId, [FromForm(Name = "file")] IFormFile file)
         {
             try
             {
@@ -70,19 +76,39 @@ namespace VEEGA_APP.Controllers
                     await file.CopyToAsync(stream);
                 }
 
-                var photo = new vehicle_photo { file_name = fileName };
+                var photo = new vehicle_photo { file_name = fileName, vehicleId = vehicleId };
                 vehicle.photos.Add(photo);
+                _vehicleDetailsRepo.Update(vehicle);
                 if (await _uow.completeAsync())
-                    return Ok(vehicle);
+                    return Ok(_mapper.Map<PhotoDTO>(photo));
 
-                return StatusCode(500, vehicle);
+                return StatusCode(500, _mapper.Map<PhotoDTO>(photo));
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 return StatusCode(500);
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetListOfPhoto(int vehicleId)
+        {
+            try
+            {
+                var res = await _vehiclePhotoRepo.GetPhotoInfo(vehicleId);
+                if (res == null)
+                    return NotFound(res);
+
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(500);
+            }
+
         }
     }
 }

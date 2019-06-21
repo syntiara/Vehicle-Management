@@ -28,7 +28,13 @@
           <li>Phone Number: {{vehicleInfo?.contact.phone_number}}</li>
       </ul>
     </div>
-    <div class="tab-pane fade" id="photo" role="tabpanel" aria-labelledby="photo-tab">qeen</div>
+    <div class="tab-pane fade" id="photo" role="tabpanel" aria-labelledby="photo-tab">
+      <h2 class="mt-5">Photos</h2>
+      <input class="mb-5" type="file" (change)="uploadPhoto()" #fileInput>
+      <div class="mt-4">
+        <img *ngFor="let photo of photos" height="200" width="200" src="/uploads/{{photo.fileName}}" alt="" class="img-thumbnail">
+      </div>
+    </div>
   </div>
   <div class="row mt-4 my-auto col-6">
       <button class="btn btn-warning mr-2 col-sm-2 text-white my-4 btn-block" [routerLink]="['/vehicles/edit/', vehicleInfo?.id]">Edit</button>

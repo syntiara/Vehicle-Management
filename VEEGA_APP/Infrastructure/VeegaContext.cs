@@ -28,6 +28,7 @@ namespace VEEGA_APP.Infrastructure
         public DbSet<vehicle_model> vehicle_model { get; set; }
         public DbSet<vehicle_feature> vehicle_feature { get; set; }
         public DbSet<vehicle_details> vehicle_details { get; set; }
+        public DbSet<vehicle_photo> vehicle_photo { get; set; }
 
 
     }

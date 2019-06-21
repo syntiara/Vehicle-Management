@@ -3,20 +3,23 @@ import { HttpClient} from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { SaveVehicle, Vehicle, QueryResult } from '../model/vehicle';
 import { isNullOrUndefined } from 'util';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehicleService {
-  private endpointM: string  = 'http://localhost:5676/api/make'
-  private endpointF: string  = 'http://localhost:5676/api/feature'
-  private endpointVD: string  = 'http://localhost:5676/api/vehicle-details'
+  private readonly endpointM: string  = environment.makeUrl
+  private readonly endpointF: string  = environment.featureUrl
+  private readonly endpointVD: string = environment.detailsUrl
+
 
 
   constructor(private _http: HttpClient) { }
 
   getMakes() {
+    console.log("make", this.endpointM);
     return this._http.get<any>(`${this.endpointM}`)
       .pipe(map(res => res));
   }

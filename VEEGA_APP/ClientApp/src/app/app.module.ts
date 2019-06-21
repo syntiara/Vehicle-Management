@@ -14,6 +14,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
 import { PaginationComponent } from './shared/component/pagination/pagination.component';
 import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
+import { PhotoService } from './service/photo.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { ViewVehicleComponent } from './view-vehicle/view-vehicle.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [VehicleService],
+  providers: [VehicleService, PhotoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,6 +20,10 @@ namespace VEEGA_APP.Helpers
             CreateMap<vehicle_make, VehicleMakeDTO>()
                 .ForMember(dest => dest.models, opt => opt.MapFrom(src => src.vehicle_model));
 
+            CreateMap<vehicle_photo, PhotoDTO>()
+              .ForMember(dest => dest.id, opt => opt.MapFrom(src => src.id))
+              .ForMember(dest => dest.fileName, opt => opt.MapFrom(src => src.file_name));
+
             CreateMap<vehicle_details, VehicleDetailsDTO>()
                 .ForMember(dest => dest.contact, opt => opt.MapFrom(src => new ContactDTO { name = src.contact.contact_name, email = src.contact.contact_email, phone_number = src.contact.contact_phoneNumber }))
                 .ForMember(dest => dest.models, opt => opt.MapFrom(src => src.vehicle_model))

@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using VEEGA_APP.Core.DataObjects.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace VEEGA_APP.Helpers
 {

@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 using VEEGA_APP.Core.Interfaces;
 using VEEGA_APP.Helpers;
 using VEEGA_APP.Infrastructure;
@@ -31,6 +34,11 @@ namespace VEEGA_APP
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            // In production, the Angular files will be served from this directory
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/dist";
+            });
             services.AddAutoMapper();
 
             // Inject AppIdentitySettings so that others can use too
@@ -47,6 +55,7 @@ namespace VEEGA_APP
             services.AddScoped<IVehicleMakeRepository, VehicleMakeRepository>();
             services.AddScoped<IVehicleDetailsRepository, VehicleDetailsRepository>();
             services.AddScoped<IVehicleModelRepository,  VehicleModelRepository>();
+            services.AddScoped<IVehiclePhotoRepository, VehiclePhotoRepository>();
 
 
             //Enable Cors
@@ -72,8 +81,47 @@ namespace VEEGA_APP
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.Use(async (context, next) => {
+                await next();
+                if (context.Response.StatusCode == 404 &&
+                   !Path.HasExtension(context.Request.Path.Value) &&
+                   !context.Request.Path.Value.StartsWith("/api/"))
+                {
+                    context.Request.Path = "/index.html";
+                    await next();
+                }
+            });
+            app.UseMvcWithDefaultRoute();
             //to serve images, stylesheet etc.
+            app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseSpaStaticFiles();
+            app.UseSpa(spa =>
+            {
+                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                // see https://go.microsoft.com/fwlink/?linkid=864501
+
+                spa.Options.SourcePath = "ClientApp";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
+            });
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads")),
+            //    RequestPath = "/Myuploads",
+            //    //ContentTypeProvider = provider
+            //});
+
+            //app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads")),
+            //    RequestPath = "/Myuploads"
+            //});
             app.UseCors("CorsPolicy");
             app.UseMvc();
             app.Run(async (context) =>
