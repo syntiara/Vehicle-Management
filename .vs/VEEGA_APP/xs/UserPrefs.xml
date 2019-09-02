@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.ItemProperties.VEEGA__APP PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Core/DataObjects/Entities/vehicle_details.cs">
     <Files>
-      <File FileName="Program.cs" />
+      <File FileName="Program.cs" Line="1" Column="1" />
       <File FileName="Core/DataObjects/Entities/vehicle_details.cs" Line="1" Column="1" />
     </Files>
     <Pads>
