@@ -1,0 +1,7 @@
+<div *ngIf="messgError"  id="toast" [ngClass]="{'col-12': isModal}"class="font-weight-bold col-6 mx-auto alert alert-danger text-white text-center" role="alert">
+    {{messgError}}
+  </div>
+  <div *ngIf="messgSuccess"  id="toast" [ngClass]="{'col-12': isModal}"class="font-weight-bold col-6 mx-auto alert alert-success text-white text-center" role="alert">
+    {{messgSuccess}}
+  </div>
+  

@@ -1,0 +1,54 @@
+<div class="container my-auto mx-auto"> 
+<ul class="nav nav-tabs" id="myTab" role="tablist" *ngIf="vehicleInfo">
+    <li class="nav-item">
+      <a class="nav-link active" id="vehicle-tab" data-toggle="tab" href="#vehicle" role="tab" aria-controls="vehicle" aria-selected="true">Vehicle</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="photo-tab" data-toggle="tab" href="#photo" role="tab" aria-controls="photo" aria-selected="false">Photo</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="vehicle" role="tabpanel" aria-labelledby="vehicle-tab">
+      <h2 class="mt-5">Basic Information</h2>
+      <ul>
+        <li>Make: {{vehicleInfo?.makes.name}}</li>
+        <li>Model: {{vehicleInfo?.models.name}}</li>
+          <li>Registered: {{vehicleInfo?.isRegistered}}</li>
+      </ul>
+      <div class="mt-3" *ngIf="vehicleInfo?.features.length > 0">
+          <h2 class="mt-5">Features</h2>
+          <ul *ngFor="let feature of vehicleInfo?.features">
+            <li>{{feature?.name}}</li>
+          </ul>
+      </div>
+      <h2 class="mt-3">Contact Details</h2>
+      <ul>
+        <li>Name: {{vehicleInfo?.contact.name}}</li>
+        <li>Email: {{vehicleInfo?.contact.email}}</li>
+          <li>Phone Number: {{vehicleInfo?.contact.phone_number}}</li>
+      </ul>
+    </div>
+    <div class="tab-pane fade" id="photo" role="tabpanel" aria-labelledby="photo-tab">
+      <h2 class="mt-5">Photos</h2>
+      <input class="mb-5" type="file" (change)="uploadPhoto()" #fileInput>
+      <app-notify *ngIf="messg" [messgError]="messg.error" [messgSuccess]="messg.success"></app-notify>
+      <div class="mt-4">
+        <img *ngFor="let photo of photos" height="200" width="200" src="/uploads/{{photo.fileName}}" alt="" class="img-thumbnail">
+      </div>
+      <div class="mt-3 progress" *ngIf="uploadResponse.status === 'progress'">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [style.width]="uploadResponse.message +'%'">
+            <span class="sr-only">
+                {{uploadResponse.message}}% complete
+          </span>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="row mt-4 my-auto col-6">
+      <button class="btn btn-warning mr-2 col-sm-2 text-white my-4 btn-block" [routerLink]="['/vehicles/edit/', vehicleInfo?.id]">Edit</button>
+      <button  class="btn btn-danger  mr-2 col-sm-2 text-white my-4 btn-block" type="button" (click)="delete()">Delete</button>
+      <button class="btn col-sm-2 text-primary my-4 btn-link">Back <i class="fa fa-arrow-circle-right"></i></button>
+    </div>
+</div>
+
+
