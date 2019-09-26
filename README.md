@@ -1,6 +1,6 @@
 # Vehicle Management- App
 
-This is a backend application that exposes routes for a movie rental business
+This application is used to manage fleets of vehicle
 
 <img width="1440" alt="Server Side" src="./screenshot.png">
 
