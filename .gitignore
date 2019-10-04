@@ -3,3 +3,6 @@ ClientApp/src/environments/
 wwwroot/uploads/
 appsettings.Development.json
 appsettings.json
+.DS_Store
+bin
+storage.ide

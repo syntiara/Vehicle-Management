@@ -12,6 +12,8 @@ namespace VEEGA_APP.Core.Interfaces
 
         IQueryable<TEntity> GetAllWithNoTracking();
 
+        IQueryable<TEntity> GetWhere(Expression<Func<TEntity, bool>> wherePredicate);
+
         Task<TEntity> GetAsync(Tkey key);
 
         void Add(TEntity entity);

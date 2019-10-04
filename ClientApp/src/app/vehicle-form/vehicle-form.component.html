@@ -33,7 +33,7 @@
         </div>
         <div class="h4 mb-4 text-left">Features</div>
         <div class="form-check text-left mb-4" *ngFor="let f of features">
-          <input formArrayName="features" class="form-check-input"  type="checkbox" value="{{f.id}}" [checked]="vehicle.features?.includes(f.id)" (change)="onCheckChanges($event.target)">
+          <input formArrayName="features" class="form-check-input"  #checkboxes type="checkbox" value="{{f.id}}" [checked]="checkSelected(f.id)" (change)="onCheckChanges($event.target)">
           <label class="form-check-label"> {{f.name}}</label>
         </div>
         <div formGroupName="contact">

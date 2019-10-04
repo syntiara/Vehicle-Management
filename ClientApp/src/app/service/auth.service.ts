@@ -116,7 +116,7 @@ export class AuthService {
       this.userProfileSubject$.next(user);
       this.loggedIn = loggedIn;
       // Redirect to target route after callback processing
-      this.router.navigate([targetRoute]);
+      this.router.navigate([targetRoute]).then(r => console.log("Was here", r));
     });
   }
 

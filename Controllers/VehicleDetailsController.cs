@@ -24,7 +24,7 @@ namespace VEEGA_APP.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> CreateVehicleDetails([FromBody]VehicleDetailsWDTO model)
         {
             try
@@ -41,7 +41,7 @@ namespace VEEGA_APP.Controllers
                 var entity = _vehicleDetailsRepo.CreateVehicleDetail(model);
                 _vehicleDetailsRepo.Add(entity);
                 if (await _uow.completeAsync())
-                    return Ok(model);
+                    return Ok(entity.id);
 
                 return StatusCode(500);
             }
@@ -53,7 +53,7 @@ namespace VEEGA_APP.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> UpdateVehicleDetails(int id, [FromBody]VehicleDetailsWDTO model)
         {
             try
@@ -66,7 +66,7 @@ namespace VEEGA_APP.Controllers
                 if (vehicleEntity == null)
                     return NotFound(id);
 
-                var entity = _vehicleDetailsRepo.UpdateVehicleDetail(model, vehicleEntity);
+                Core.DataObjects.Entities.vehicle_details entity = _vehicleDetailsRepo.UpdateVehicleDetail(model, vehicleEntity);
                 _vehicleDetailsRepo.Update(entity);
                 if (await _uow.completeAsync())
                     return Ok(model);

@@ -43,12 +43,12 @@ namespace VEEGA_APP.Helpers
               .AfterMap((vwdto, ve) =>
               {
                   // Remove unselected features
-                  var removedFeatures = ve.vehicle_feature_join.Where(f => !vwdto.features.Contains(f.featureId));
+                  var removedFeatures = ve.vehicle_feature_join.Where(f => !vwdto.features.Contains(f.featureId)).ToList();
                   foreach (var f in removedFeatures)
                       ve.vehicle_feature_join.Remove(f);
 
                   // Add new features
-                  var addedFeatures = vwdto.features.Where(id => !ve.vehicle_feature_join.Any(f => f.featureId == id)).Select(id => new vehicle_feature_join { featureId = id });
+                  var addedFeatures = vwdto.features.Where(id => !ve.vehicle_feature_join.Any(f => f.featureId == id)).Select(id => new vehicle_feature_join { featureId = id }).ToList();
                   foreach (var f in addedFeatures)
                       ve.vehicle_feature_join.Add(f);
               });

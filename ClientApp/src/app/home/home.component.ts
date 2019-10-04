@@ -12,8 +12,6 @@ export class HomeComponent implements OnInit {
   isAuthenticated = false;
   profile: any;
 
-  private auth0Client: Auth0Client;
-
   constructor(public auth: AuthService) { }
 
 /**

@@ -7584,7 +7584,6 @@
       "path": "netstandard.library/2.0.3",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "build/netstandard2.0/NETStandard.Library.targets",
@@ -7848,6 +7847,7 @@
       "path": "runtime.native.system.data.sqlclient.sni/4.4.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
@@ -12659,6 +12659,7 @@
             "version": "[2.1.1, )"
           },
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
@@ -12669,10 +12670,16 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-        "warn": true
+        "warn": true,
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
       }
     }
   }

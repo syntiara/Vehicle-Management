@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using VEEGA_APP.Core.DataObjects.Entities;
 using VEEGA_APP.Core.Interfaces;
 
 namespace VEEGA_APP.Infrastructure.Repos
@@ -21,6 +22,12 @@ namespace VEEGA_APP.Infrastructure.Repos
         {
             return
                 _DBContext.Set<TEntity>().Where(wherePredicate).AsNoTracking();
+        }
+
+        public IQueryable<TEntity> GetWhere(Expression<Func<TEntity, bool>> wherePredicate)
+        {
+            return
+                _DBContext.Set<TEntity>().Where(wherePredicate);
         }
 
         public IQueryable<TEntity> GetAllWithNoTracking()

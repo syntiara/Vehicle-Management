@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { VehicleService } from '../service/vehicle.service';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl, EmailValidator } from "@angular/forms";
@@ -13,6 +13,7 @@ import { Message } from '../model/base';
   styleUrls: ['./vehicle-form.component.css']
 })
 export class VehicleFormComponent implements OnInit {
+@ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
 vehicleForm: FormGroup;
 contact: FormArray;
 feature: FormArray;
@@ -65,6 +66,7 @@ features;
       this.features = data[1];
       //check is there is vehicle id, as the vehicle object is used for update
       if(this.vehicle.id > 0){
+        console.log("features",this.features);
         this.vehicle = data[2];
         this.setVehicle(this.vehicle);
         this.populateModel(this.vehicle.makes.id);
@@ -107,7 +109,7 @@ features;
         }
     });
     this.vehicle.features.forEach(val => {
-      formArray.push(new FormControl((val.id)));
+      formArray.push(new FormControl((val.id.toString())));
     });
     console.log("patchded", this.vehicleForm.value);
   }
@@ -135,6 +137,15 @@ features;
     this.populateModel(val);
   }
 
+uncheckAll() {
+  this.checkboxes.forEach((element) => {
+    element.nativeElement.checked = false;
+  });
+}
+
+checkSelected(id){
+  return this.vehicle.features? this.vehicle.features.find(x => x.id === id) : null;
+}
   onSubmit(){
     this.scrollToTop();
     if(this.vehicleForm.invalid)
@@ -142,7 +153,9 @@ features;
     let formValue = this.vehicleForm.value;
     delete formValue["makeId"]; //not part of the model;
     console.log("update", formValue);
+    this.messg = new Message();
     this.vehicleForm.reset();
+    this.uncheckAll();
     if(this.vehicle.id){
       this._vehicleService.updateVehicleDetails(this.vehicle.id, formValue).subscribe(val => {
         if(val instanceof SaveVehicle)
@@ -156,8 +169,8 @@ features;
       });
     }
   else{
-    this._vehicleService.createVehicleDetails(formValue).subscribe(val => {
-      this._router.navigate(['/vehicles/',val.id]);
+    this._vehicleService.createVehicleDetails(formValue).subscribe(id => {
+      this._router.navigate(['/vehicles/',id]);
     }, 
     err => {
       this.messg.error = "Unexpected error occured."

@@ -25,7 +25,6 @@ namespace VEEGA_APP.Infrastructure.Repos
             {
                 var entity = _mapper.Map<vehicle_details>(model);
                 entity.last_updated = DateTime.UtcNow;
-
                 return entity;
             }
             catch (Exception ex)
@@ -53,7 +52,7 @@ namespace VEEGA_APP.Infrastructure.Repos
         {
             try
             {
-                var entity = await GetWhereWithNoTracking(x => x.id == id).Include(m => m.vehicle_feature_join).FirstOrDefaultAsync();
+                var entity = await GetWhere(x => x.id == id).Include(m => m.vehicle_feature_join).FirstOrDefaultAsync();
 
                 if (entity != null)
                     return entity;

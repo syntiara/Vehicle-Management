@@ -30,8 +30,8 @@ export class VehicleService {
   }
 
   createVehicleDetails(model) {
-    return this._http.post<Vehicle>(`${this.endpointVD}`, model)
-      .pipe(map((res:Vehicle) => res));
+    return this._http.post<Number>(`${this.endpointVD}`, model)
+      .pipe(map((res:Number) => res));
   }
 
   getVehicleDetails(id) {

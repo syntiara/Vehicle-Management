@@ -1,35 +1,52 @@
 ﻿<Properties StartupConfiguration="{94ADEB60-D9C0-4914-AF47-AF4FF3889901}|Default">
-  <MonoDevelop.Ide.ItemProperties.VEEGA__APP PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Core/DataObjects/Entities/vehicle_details.cs">
+  <MonoDevelop.Ide.ItemProperties.VEEGA__APP PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Infrastructure/Repos/UnitOfWork.cs">
     <Files>
-      <File FileName="Program.cs" Line="1" Column="1" />
-      <File FileName="Core/DataObjects/Entities/vehicle_details.cs" Line="1" Column="1" />
+      <File FileName="Controllers/VehicleDetailsController.cs" Line="71" Column="1" />
+      <File FileName="../../../../../../../usr/local/share/dotnet/sdk/3.0.100/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.DefaultItems.targets" />
+      <File FileName="Startup.cs" />
+      <File FileName="Infrastructure/Repos/VehicleDetailsRepository.cs" />
+      <File FileName="appsettings.Development.json" />
+      <File FileName="Core/Interfaces/IVehicleDetailsRepository.cs" />
+      <File FileName="Controllers/MakeController.cs" />
+      <File FileName="Controllers/PhotoController.cs" />
+      <File FileName="Program.cs" />
+      <File FileName="Helpers/MappingProfile.cs" />
+      <File FileName="Core/DataObjects/Models/VehicleDetailsWDTO.cs" />
+      <File FileName="Core/Interfaces/IUnitOfWork.cs" />
+      <File FileName="Infrastructure/Repos/UnitOfWork.cs" Line="27" Column="32" />
+      <File FileName="Core/DataObjects/Entities/vehicle_details.cs" />
+      <File FileName="Core/DataObjects/Entities/vehicle_feature_join.cs" />
+      <File FileName="Infrastructure/VeegaContext.cs" />
+      <File FileName="Infrastructure/Repos/BaseRepo.cs" />
+      <File FileName="Core/Interfaces/IBaseRepository.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="VEEGA_APP" expanded="True">
             <Node name="VEEGA_APP" expanded="True">
-              <Node name="Core" expanded="True">
-                <Node name="DataObjects" expanded="True">
-                  <Node name="Entities" expanded="True">
-                    <Node name="vehicle_details.cs" selected="True" />
-                  </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Helpers" expanded="True" />
+              <Node name="Infrastructure" expanded="True">
+                <Node name="Repos" expanded="True">
+                  <Node name="UnitOfWork.cs" selected="True" />
                 </Node>
               </Node>
             </Node>
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/chiamakaokolieze/Desktop/cynthia/projects/PPProjects/Vehicle-Management/Helpers/MappingProfile.cs" relfile="Helpers/MappingProfile.cs" line="52" column="1" />
+      <Breakpoint file="/Users/chiamakaokolieze/Desktop/cynthia/projects/PPProjects/Vehicle-Management/Infrastructure/Repos/UnitOfWork.cs" relfile="Infrastructure/Repos/UnitOfWork.cs" line="21" column="1" />
+      <Breakpoint file="/Users/chiamakaokolieze/Desktop/cynthia/projects/PPProjects/Vehicle-Management/Controllers/VehicleDetailsController.cs" relfile="Controllers/VehicleDetailsController.cs" line="70" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
