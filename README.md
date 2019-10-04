@@ -33,7 +33,6 @@ This is both server-side .Net and client-side javascript application built with 
 1. Install [**Node JS**](https://nodejs.org/en/)
 2. Install [Git](https://git-scm.com/downloads)
 3. Install [Install SQL Database](http://www.sqlservertutorial.net/install-sql-server/)
-4. Set up [Mongod](https://www.codecademy.com/articles/tdd-setup-mongodb-2)
 
 
 ## Instructions
