@@ -1,3 +1,2 @@
-*.cs linguist-language=CSharp
-src/ClientApp/wwwroot/** linguist-vendored # exact, absolute path
+src/ClientApp/wwwroot/**.js linguist-vendored # exact, absolute path
 *.cs linguist-vendored=false
