@@ -1,4 +1,1 @@
-*.cs linguist-language=CSharp
-src/js/* linguist-vendored # exact, absolute path
-*/js/* linguist-vendored # wildcarded, absolute path with 2-dir levels
-**/js/* linguist-vendored # wildcarded, absolute path with n-dir levels
+*.cs linguist-language=C#
