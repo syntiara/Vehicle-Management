@@ -1,3 +1,2 @@
-src/ClientApp/wwwroot/**.js linguist-vendored # exact, absolute path
+ClientApp/wwwroot/** linguist-vendored # exact, absolute path
 *.cs linguist-vendored=false
-© 2019 GitHub, Inc.
