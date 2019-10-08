@@ -1,3 +1,2 @@
 ./ClientApp/wwwroot/** linguist-vendored # exact, absolute path
-./ClientApp/src/app/** linguist-vendored=false
 *.cs linguist-vendored=false
