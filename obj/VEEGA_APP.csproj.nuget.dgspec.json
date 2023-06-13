@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/chiamakaokolieze/Desktop/cynthia/projects/PPProjects/Vehicle-Management/VEEGA_APP.csproj": {}
+    "/workspaces/Vehicle-Management/VEEGA_APP.csproj": {}
   },
   "projects": {
-    "/Users/chiamakaokolieze/Desktop/cynthia/projects/PPProjects/Vehicle-Management/VEEGA_APP.csproj": {
+    "/workspaces/Vehicle-Management/VEEGA_APP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/chiamakaokolieze/Desktop/cynthia/projects/PPProjects/Vehicle-Management/VEEGA_APP.csproj",
+        "projectUniqueName": "/workspaces/Vehicle-Management/VEEGA_APP.csproj",
         "projectName": "VEEGA_APP",
-        "projectPath": "/Users/chiamakaokolieze/Desktop/cynthia/projects/PPProjects/Vehicle-Management/VEEGA_APP.csproj",
-        "packagesPath": "/Users/chiamakaokolieze/.nuget/packages/",
-        "outputPath": "/Users/chiamakaokolieze/Desktop/cynthia/projects/PPProjects/Vehicle-Management/obj/",
+        "projectPath": "/workspaces/Vehicle-Management/VEEGA_APP.csproj",
+        "packagesPath": "/home/codespace/.nuget/packages/",
+        "outputPath": "/workspaces/Vehicle-Management/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "/Users/chiamakaokolieze/.config/NuGet/NuGet.Config"
+          "/home/codespace/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
@@ -27,6 +24,7 @@
         },
         "frameworks": {
           "netcoreapp2.1": {
+            "targetAlias": "netcoreapp2.1",
             "projectReferences": {}
           }
         },
@@ -38,6 +36,7 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
+          "targetAlias": "netcoreapp2.1",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
@@ -83,11 +82,12 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/dotnet/7.0.203/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }
